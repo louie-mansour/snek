@@ -3,21 +3,16 @@ from flask import Flask, request
 from controller.rest_controller import RestController
 from repo.grid_repo import GridRepo
 from repo.input_command_repo import SnekCommandRepo
-from usecase.next_frame import NextFrameUseCase
-from usecase.set_snek_direction import SetSnekDirectionUseCase
+from usecase.use_cases import UseCases
 from view.grid_view import GridView
 
 app = Flask(__name__)
 
-snek_command_repo = SnekCommandRepo()
-
+use_cases = UseCases(GridRepo(), SnekCommandRepo())
 rest_controller = RestController(
-    SetSnekDirectionUseCase(
-        snek_command_repo,
-    ),
-    NextFrameUseCase(
+    UseCases(
         GridRepo(),
-        snek_command_repo
+        SnekCommandRepo()
     ),
     GridView()
 )

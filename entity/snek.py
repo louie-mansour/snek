@@ -8,6 +8,12 @@ class Snek:
         self.positions = positions
         self.direction = None
 
+    def __str__(self):
+        out = ''
+        for position in self.positions:
+            out += str(position)
+        return out
+
     def move(self, direction):
         new_head = self._get_new_head_position(direction)
         self.positions.insert(0, new_head)
