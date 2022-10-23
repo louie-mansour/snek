@@ -12,6 +12,7 @@ class Grid:
                 self.empty_positions.update({Position(r, c)})
         self._empty_grid = self.empty_positions.copy()
         self.snek = None
+        self.food = None
 
     def __str__(self):
         out = ''
